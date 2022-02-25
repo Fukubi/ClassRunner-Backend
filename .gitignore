@@ -58,3 +58,4 @@ target/
 
 # virtual env
 venv/
+*.db
