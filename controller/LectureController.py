@@ -37,3 +37,23 @@ def save_lecture():
     lecture.from_json(data)
 
     return jsonify(lectureService.create(lecture).serialize()), 201
+
+
+@app.route("/lectures", methods=["PUT"])
+def update_lecture():
+    data = request.get_json()
+    print(data)
+    lectureService = LectureService()
+
+    lecture = Lecture()
+    lecture.from_json(data)
+    print(lecture)
+
+    return jsonify(lectureService.update(lecture).serialize()), 200
+
+
+@app.route("/lectures/<int:id>", methods=["DELETE"])
+def delete_lecture(id):
+    lectureService = LectureService()
+    lectureService.delete(id)
+    return jsonify({"status": "success"}), 204

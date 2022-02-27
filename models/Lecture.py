@@ -29,7 +29,7 @@ class Lecture(Base):
                     setattr(self, attr, json[attr])
                 except KeyError:
                     pass
-    
+
     def serialize(self):
         return {
             "id": self.id,

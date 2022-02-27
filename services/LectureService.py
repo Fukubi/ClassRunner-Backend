@@ -30,11 +30,15 @@ class LectureService:
         old_lecture = self.read_by_id(lecture.id)
 
         for attr in dir(lecture):
+            print(attr)
             if not attr.startswith("_") and not callable(getattr(lecture, attr)):
                 if getattr(lecture, attr):
+                    print(f"Changing {attr}")
                     setattr(old_lecture, attr, getattr(lecture, attr))
 
         self.session.commit()
+
+        return self.read()[-1]
 
     def delete(self, id):
         self.session.delete(self.read_by_id(id))
